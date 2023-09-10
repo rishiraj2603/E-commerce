@@ -1,0 +1,28 @@
+.hello{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    /* padding: 20px; */
+    background-image: url(https://images.unsplash.com/photo-1637625854255-d893202554f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fGlVSXNuVnRqQjBZfHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60);
+}
+.navbar{
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 500;
+    margin: 0;
+    text-decoration: none;
+    padding: 15px;
+    color: cornflowerblue;
+}
+.login{
+    /* text-align:end; */
+    width:60vw;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+.logout{
+    /* border: 2px solid blue; */
+    width:20vw;
+    text-align: end;
+}

@@ -1,0 +1,42 @@
+<% layout('/layout/boilerplate.ejs') -%>
+
+<div class="row">
+  <div class="col-lg-8">
+      <% for( let item of cart ) { %>
+          <div class="card mb-3" style="max-width: 550px;">
+              <div class="row g-0">
+                <div class="col-md-4 col-4">
+                  <img src="<%= item.productId.image %>" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8 col-8">
+                  <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                      <span><%= item.productId.name %></span>
+                      <form class="d-inline" action="/user/<%= item.productId._id %>?_method=DELETE" method="post">
+                          <button style="border: none; background: none;"><i class="fa fa-times btn" aria-hidden="true"></i></button>
+                      </form>
+                  </h5>
+                    <p class="card-text"><%= item.productId.description %></p>
+                    <div>
+                      <form class="d-inline" action="/user/<%= item.productId._id %>/remove" method="post">
+                        <button class="btn btn-sm bg-primary text-light">-</button>
+                      </form>
+                      <span><%= item.quantity  %></span>
+                      <form class="d-inline" action="/user/<%= item.productId._id %>/cart/add" method="post">
+                          <button class="btn btn-sm bg-primary text-white">+</button>
+                      </form>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      <% } %>
+  </div>
+
+  <div class="col-4 ">
+    <% for( let item of cart) { %>
+      <span class="d-block"><%= item.productId.price %> * <%= item.quantity %> = <%= item.productId.price*item.quantity %></span>
+    
+    <% } %>
+      <span> Total Amount: <%= totalAmount %></span>
+  </div>

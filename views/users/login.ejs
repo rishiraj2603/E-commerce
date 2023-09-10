@@ -1,0 +1,22 @@
+<% layout('/layout/boilerplate') -%>
+
+
+    <form action="/login" method="post">
+        <div class="m-5" style="width: 35rem;">
+            <div class="mb-3">
+                <label for="exampleInputUsername" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control border border-black p-3 mb-3"
+                    id="exampleInputUsername" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control border border-black p-3 mb-3"
+                    id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div style="margin: 50px; text-decoration:underline; font-size: larger; font-weight: 500; font-family: Georgia, 'Times New Roman', Times, serif; color: black;">
+            <a href="/signup">I don't have an account</a>
+        </div>
+
+    </form>
