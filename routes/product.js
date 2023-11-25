@@ -2,7 +2,8 @@ const express = require("express");
 const Product = require("../models/product");
 const { validateData, isLoggedIn,isSeller,isAuthor} = require("../middleware");
 const router = express.Router();
-
+const User = require('../models/user');
+const { use } = require("passport");
 
 router.get('/products', async (req, res) => {
 
@@ -15,9 +16,24 @@ router.get('/products', async (req, res) => {
 })
 
 router.get('/products/search',async(req,res)=>{
-    const {query} = req.query;
-    const products = await Product.find({name:{ "$regex": query , "$options": "i"} })
-    res.render('products/search.ejs', {products});
+   try {
+     const {query} = req.query;
+     const products = await Product.find({name:{ "$regex": query , "$options": "i"} })
+     res.render('products/search.ejs', {products});
+   } catch (error) {
+    console.log(error)
+   }
+});
+
+router.get('/products/wishlist',isLoggedIn,async(req,res)=>{
+
+    const userId = req.user;
+    const user = await User.findOne(userId).populate('wishList');
+    const wishlist = user.wishList;
+    // console.log("🚀 ~ file: product.js:33 ~ router.get ~ wishlist:", wishlist)
+    const products = wishlist
+
+    res.render('products/wishlist.ejs',{products})
 });
 
 router.get('/products/new', isLoggedIn, isSeller , (req, res) => {

@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
     return res.redirect('/signup');
 
 
-})
+});
 
 
 
