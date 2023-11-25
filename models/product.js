@@ -8,9 +8,13 @@ const productSchema = new mongoose.Schema({
         trim: true,
         require: true
     },
-    image: {
-        type: String
-    },
+    image:[
+        {
+            type: String  
+        }
+    ],
+        
+
     price: {
         type: Number,
         require: true,

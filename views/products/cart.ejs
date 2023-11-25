@@ -33,10 +33,16 @@
       <% } %>
   </div>
 
-  <div class="col-4 ">
-    <% for( let item of cart) { %>
-      <span class="d-block"><%= item.productId.price %> * <%= item.quantity %> = <%= item.productId.price*item.quantity %></span>
-    
-    <% } %>
-      <span> Total Amount: <%= totalAmount %></span>
+  <div class="col-4">
+    <div class="d-flex flex-column gap-1">
+      <% for( let item of cart) { %>
+        <span class="d-block"><%= item.productId.price %> * <%= item.quantity %> = <%= item.productId.price*item.quantity %></span>
+      
+      <% } %>
+        <span> Total Amount: <%= totalAmount %></span>
+        <br>
+        <a href="#" id="buy-btn" class="btn btn-sm btn-primary">Buy Now</a>
+    </div>
   </div>
+
+  <script src="/scripts/payment.js"></script>

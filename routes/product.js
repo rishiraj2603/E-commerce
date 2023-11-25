@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.get('/products', async (req, res) => {
+
     try {
         const products = await Product.find({});
         res.render('products/index.ejs', { products })
@@ -13,7 +14,14 @@ router.get('/products', async (req, res) => {
     }
 })
 
+router.get('/products/search',async(req,res)=>{
+    const {query} = req.query;
+    const products = await Product.find({name:{ "$regex": query , "$options": "i"} })
+    res.render('products/search.ejs', {products});
+});
+
 router.get('/products/new', isLoggedIn, isSeller , (req, res) => {
+
     try {
         res.render('products/new.ejs')
     } catch (error) {
@@ -22,9 +30,9 @@ router.get('/products/new', isLoggedIn, isSeller , (req, res) => {
 })
 
 router.post('/products',isLoggedIn,isSeller, validateData , async (req, res) => {
-    try {
-        const { name, image, price, description } = req.body;
-        await Product.create({ name, image, price, description, author:req.user._id  });
+    
+    try {      
+        await Product.create({  author:req.user._id ,...req.body });
         req.flash('success', 'Successfully added your product!');
         res.redirect('/products');
     } catch (error) {
@@ -72,8 +80,6 @@ router.delete('/products/:id', isLoggedIn,isSeller , isAuthor , async (req, res)
     try {
         const { id } = req.params;
         await Product.findByIdAndDelete(id);
-        // console.log((await Product.findById(id)).select({"reviews":1}))
-        // await Product.findByIdAndDelete(id).select({"reviews":1});
         req.flash('success', 'Successfully deleted your product!');
         res.redirect('/products');
     } catch (error) {
