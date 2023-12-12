@@ -43,8 +43,8 @@ try {
             req.flash('error', 'you are not authorized to do that');
             return res.redirect('back');
         }
+        next();
 } catch (error) {
     console.log(error)
 }
-    next();
 }
