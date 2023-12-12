@@ -39,7 +39,7 @@ router.get('/products/wishlist',isLoggedIn,async(req,res)=>{
 router.get('/products/new', isLoggedIn, isSeller , (req, res) => {
 
     try {
-        res.render('products/new.ejs')
+        res.render('products/new.ejs');
     } catch (error) {
         console.log(error)
     }

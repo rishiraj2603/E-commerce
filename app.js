@@ -14,8 +14,6 @@ const User = require("./models/user");
 const secret = process.env.SECRET;
 const MONGO_DB_URL = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017/E-Com-DB';
 
-
-
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +25,6 @@ mongoose.connect(MONGO_DB_URL)
   .catch((err) => {
     console.log(err);
   });
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -63,7 +60,7 @@ app.get('/', (req, res) => {
 res.render('home');
 });
 
-const porductsRoutes = require("./routes/product");
+const productsRoutes = require("./routes/product");
 const reviewRoutes = require('./routes/review');
 const authentication = require('./routes/authentication');
 const cartRoutes = require('./routes/cart');
@@ -71,7 +68,7 @@ const cartRoutes = require('./routes/cart');
 const productAPI = require('./routes/apis/productApi');
 const paymentAPI = require('./routes/apis/paymentApi');
 
-app.use(porductsRoutes);
+app.use(productsRoutes);
 app.use(reviewRoutes);
 
 app.use(authentication);
@@ -79,10 +76,11 @@ app.use(cartRoutes);
 app.use(productAPI);
 app.use(paymentAPI);
 
-const PORT = 4000;
+const PORT = process.env.PORT;
+
 app.listen(PORT, () => {
   console.log("server is running")
-})
+});
 
 
 

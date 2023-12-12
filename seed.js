@@ -60,7 +60,7 @@ const dummyData = [{
 ]
 
 async function sendData(){
-await Product.deleteMany({})
+// await Product.deleteMany({})
 await Product.create(dummyData)
 }
 
