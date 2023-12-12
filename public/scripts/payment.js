@@ -1,5 +1,4 @@
-const btn = document.querySelector('#buy-btn');
-
+const BuyButton = document.querySelector('#buyButton');
 async function makeOrder(amount){
     try {
         const res = await axios({
@@ -9,7 +8,7 @@ async function makeOrder(amount){
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         });
         const options = {
-            "key": "rzp_test_KAi4PClBNgkHB4", // Enter the Key ID generated from the Dashboard
+            "key": "rzp_test_3cWaO3EVBRu58j", // Enter the Key ID generated from the Dashboard
             "amount": res.data.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Ecom Corp", //your business name
@@ -37,7 +36,7 @@ async function makeOrder(amount){
 }
 
 
-btn.addEventListener('click', () => {
+BuyButton.addEventListener('click', () => {
     const amount = document.querySelector('#amount-display').innerText.split(' ')[1];
     makeOrder(amount);
 })

@@ -45,10 +45,9 @@ router.get('/products/new', isLoggedIn, isSeller , (req, res) => {
     }
 })
 
-router.post('/products',isLoggedIn,isSeller, validateData , async (req, res) => {
-    
+router.post('/products',isLoggedIn,isSeller, validateData , async (req, res) => {  
     try {      
-        await Product.create({  author:req.user._id ,...req.body });
+        await Product.create({  author:req.user._id,...req.body });
         req.flash('success', 'Successfully added your product!');
         res.redirect('/products');
     } catch (error) {
