@@ -9,7 +9,7 @@ router.post('/order',isLoggedIn, async (req, res) => {
     const instance = new Razorpay({ key_id: RAZORPAY_KEY_ID, key_secret:RAZORPAY_SECRET_KEY })
     const { amount } = req.body
     const options = {
-        amount: parseInt(amount) * 100,
+        amount: parseInt(amount) * 100 * 83.39,
         currency: "INR"
     }
     const order = await instance.orders.create(options);
