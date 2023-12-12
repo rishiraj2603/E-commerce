@@ -57,6 +57,9 @@ const dummyData = [{
     price:23000,
     description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sunt unde tempora voluptatibus iusto explicabo eveniet perferendis dolorem, aliquid, quidem illo est earum quia, quam omnis accusantium! Enim, quas maiores.'
     },
+    {
+        
+    }
 ]
 
 async function sendData(){

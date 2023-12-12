@@ -5,7 +5,6 @@ const passport = require('passport');
 // const router= require('express').Router();
 
 const User = require('../models/user');
-const bcrypt = require('bcrypt');
 
 router.get('/login', (req, res) => {
     res.render('users/login.ejs')

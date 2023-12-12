@@ -34,18 +34,19 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    console.log("🚀 ~ file: user.js:37 ~ router.post ~ user:", user)
 
     if (user) {
         if (user.password === password) {
             req.session.user_id = user._id;
             return res.redirect('/');
         }
-        // const isValid = await bcrypt.compare(password, user.password);
-        // if(isValid){
-        //     req.session.user_id = user;
-        //     return res.redirect('/');
+        const isValid = await bcrypt.compare(password, user.password);
+        if(isValid){
+            req.session.user_id = user;
+            return res.redirect('/');
 
-        // }
+        }
         return res.redirect('/login');
     }
 

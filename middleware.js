@@ -36,13 +36,15 @@ module.exports.isSeller = (req,res,next) =>{
 }
 
 module.exports.isAuthor = async (req,res,next)=>{
-    const {id} = req.params ;
-    const product = await Product.findById(id).populate('author');
-    console.log(product);
-    if(product.author._id.toString() !== req.user._id.toString()){
-        req.flash('error', 'you are not authorized to do that');
-        return res.redirect('back');
-    }
+try {
+        const {id} = req.params ;
+        const product = await Product.findById(id).populate('author');
+        if(product.author._id.toString() !== req.user._id.toString()){
+            req.flash('error', 'you are not authorized to do that');
+            return res.redirect('back');
+        }
+} catch (error) {
+    console.log(error)
+}
     next();
-
 }

@@ -1,4 +1,3 @@
-
 async function likeProduct(productId, btn) {
     try {
         const res = await axios({
@@ -6,9 +5,6 @@ async function likeProduct(productId, btn) {
             url: `/products/${productId}/like`,
             headers: {'X-Requested-With': 'XMLHttpRequest'}
         });
-    
-        // console.log(res);
-        console.log(btn);
         if(btn.classList.contains('fa-regular')){
             btn.classList.remove('fa-regular');
             btn.classList.add('fa-solid');
@@ -17,8 +13,6 @@ async function likeProduct(productId, btn) {
             btn.classList.remove('fa-solid');
             btn.classList.add('fa-regular');
         }
-        // btn.classList.toggle('fa-solid')
-
     } 
     catch (e) {
         console.log(e)
@@ -32,5 +26,4 @@ window.document.addEventListener('click', (e) => {
         const productId = btn.getAttribute('product-id');
         likeProduct(productId, btn);
     }
-
 })
